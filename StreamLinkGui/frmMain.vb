@@ -119,6 +119,12 @@ Public Class frmMain
         strName = strName.Replace("{author}", author)
         strName = strName.Replace("{title}", title)
 
+        ' ファイル名に使用できない文字を全角に置換
+        Dim invalidChars As Char() = Path.GetInvalidFileNameChars()
+        For Each c As Char In invalidChars
+            strName = strName.Replace(c, Strings.StrConv(c, VbStrConv.Wide))
+        Next
+
         Return strName
     End Function
 
