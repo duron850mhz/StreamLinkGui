@@ -10,6 +10,9 @@ Public Class frmMain
     Dim strTempPath As String = Path.Combine(Path.GetTempPath, Application.ProductName)
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' デフォルトだとShift-JISが有効じゃないらしい
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)
+
         txtStreamLinkPath.Text = ini.Read("Settings", txtStreamLinkPath.Name, "streamlink.exe")
         txtPattern.Text = ini.Read("Settings", txtPattern.Name, "{id}-{author}-{title}.ts")
         txtGetName.Text = ini.Read("Settings", txtGetName.Name, "--niconico-user-session user_session_xxxxxxxxxx --json")
