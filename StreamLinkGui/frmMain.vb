@@ -52,11 +52,13 @@ Public Class frmMain
                                 Dim strName As String = I_GetName(strURL)
                                 If I_Download(strURL, strName) = True Then
                                     If I_Encode(strName, Path.ChangeExtension(strName, "mp4")) = True Then
-                                        MessageBox.Show("ダウンロードとエンコードが正常に完了しました。", "成功しました", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                        'MessageBox.Show("ダウンロードとエンコードが正常に完了しました。", "成功しました", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                                         ' Clean up temporary files
                                         Try
                                             Directory.Delete(strTempPath, True)
+                                            ' Close the form
+                                            Me.Close()
                                         Catch ex As Exception
                                             MessageBox.Show("一時ファイルを削除できませんでした: " & ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                         End Try
